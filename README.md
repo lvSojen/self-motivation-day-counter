@@ -1,8 +1,8 @@
 # self-motivation-day-counter
 
-This is a small project that involved html, 
-tailwindcss and some javascript,
-took me a day, hope you enjoy.
+This is a small project that involved html,<br />
+tailwindcss and some javascript,<br />
+took me a day, hope you enjoy.<br />
 and Stay Motivated!
 
 Can do:
@@ -12,7 +12,7 @@ Can do:
 4. change the days on the counter
 5. random motivational quotes on display
 
-Tip:
+Tip:<br />
 zoom in for a better visual experience
 
 Showcase:
