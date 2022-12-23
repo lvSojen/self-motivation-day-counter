@@ -174,7 +174,7 @@ function showDateForm() {
   textArea.focus();
 }
 
-//update new Goal when submit using edit task form
+//update new Goal when submit using edit date form
 var dateForm = document.getElementById("date-form");
 dateForm.addEventListener("submit", function (event) {
   var editForm = document.getElementById("edit-number");
