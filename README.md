@@ -1,6 +1,6 @@
 # self-motivation-day-counter
 
-This is a small project that involved html,<br />
+This is a small project that involved html,
 tailwindcss and some javascript,<br />
 took me a day, hope you enjoy.<br />
 and Stay Motivated!
