@@ -8,14 +8,23 @@ function getDayOfYear(date) {
   var oneDay = 1000 * 60 * 60 * 24;
   return Math.floor(diff / oneDay);
 }
-var total_days = parseInt(getDayOfYear(dt)) + parseInt(localStorage.number);
+
+//to get current total days
+function getTotalDays() {
+  return parseInt(getDayOfYear(dt)) + parseInt(localStorage.number);
+}
+
+//to get last total days in the local storage
+function getLocalTotalDays() {
+  return parseInt(localStorage.total_count);
+}
 
 // Initialize local storage here
 if (!localStorage.getItem("number") === null) {
   localStorage.setItem("number", 0);
 }
 if (localStorage.getItem("total_count") === null) {
-  localStorage.setItem("total_count", total_days);
+  localStorage.setItem("total_count", getTotalDays());
 }
 if (!localStorage.getItem("message") === null) {
   localStorage.setItem("message", "");
@@ -79,9 +88,11 @@ function updateButton() {
   }
   //check to see if you have checked-in
   let current_count = parseInt(localStorage.getItem("total_count"));
-  if (current_count < total_days) {
-    reminderMessage = document.getElementById("reminder");
+  reminderMessage = document.getElementById("reminder");
+  if (getLocalTotalDays() < getTotalDays()) {
     reminderMessage.style.display = "block";
+  } else {
+    reminderMessage.style.display = "none";
   }
 }
 setInterval(updateButton, 0);
@@ -91,7 +102,7 @@ increaseButton.addEventListener("click", function () {
   update = parseInt(count_day.innerHTML) + 1;
   localStorage.setItem("number", update);
   count_day.innerHTML = update;
-  localStorage.setItem("total_count", total_days);
+  localStorage.setItem("total_count", getTotalDays());
 });
 
 //hold on left-click for speedy increament
@@ -102,7 +113,7 @@ increaseButton.addEventListener("mousedown", () => {
     update = parseInt(count_day.innerHTML) + 1;
     localStorage.setItem("number", update);
     count_day.innerHTML = update;
-    localStorage.setItem("total_count", total_days);
+    localStorage.setItem("total_count", getTotalDays());
   }, 100); // Increment the counter tops at every 100 milliseconds
   increaseButton.addEventListener("mouseup", () => {
     // Clear the interval when the button is released
@@ -115,7 +126,7 @@ decreaseButton.addEventListener("click", function () {
   update = parseInt(count_day.innerHTML) - 1;
   localStorage.setItem("number", update);
   count_day.innerHTML = update;
-  localStorage.setItem("total_count", total_days);
+  localStorage.setItem("total_count", getTotalDays());
 });
 
 //hold on left-click for speedy decrement
@@ -130,7 +141,7 @@ decreaseButton.addEventListener("mousedown", () => {
     }
     localStorage.setItem("number", update);
     count_day.innerHTML = update;
-    localStorage.setItem("total_count", total_days);
+    localStorage.setItem("total_count", getTotalDays());
   }, 100); // Increment the counter tops at every 100 milliseconds
   decreaseButton.addEventListener("mouseup", () => {
     // Clear the interval when the button is released
@@ -145,7 +156,7 @@ resetButton.addEventListener("click", function () {
   dayValue.innerHTML = 0;
   monthValue.innerHTML = 0;
   yearValue.innerHTML = 0;
-  localStorage.setItem("total_count", total_days);
+  localStorage.setItem("total_count", getTotalDays());
 });
 
 //hide edit-form
@@ -225,7 +236,7 @@ dateForm.addEventListener("submit", function (event) {
 var reminderMessage = document.getElementById("reminder");
 ignoreButton.addEventListener("click", function () {
   reminderMessage.style.display = "none";
-  localStorage.setItem("total_count", total_days);
+  localStorage.setItem("total_count", getTotalDays());
 });
 
 // //send mission
