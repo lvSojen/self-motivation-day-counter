@@ -6,13 +6,16 @@ took me a day, hope you enjoy.<br />
 and Stay Motivated!
 
 Can do:
+
 1. increment & decrement the days counter
 2. reset the counter
 3. change self motivational goal
 4. change the days on the counter
 5. random motivational quotes on display
+6. reminder for daily check-ins
 
 Tips:
+
 1. zoom in for a better visual experience
 
 Showcase:
