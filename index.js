@@ -1,9 +1,24 @@
 var dt = new Date();
 var full_year = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 
+//to get total number of days in the year
+function getDayOfYear(date) {
+  var start = new Date(date.getFullYear(), 0, 0);
+  var diff = date - start;
+  var oneDay = 1000 * 60 * 60 * 24;
+  return Math.floor(diff / oneDay);
+}
+var total_days = parseInt(getDayOfYear(dt)) + parseInt(localStorage.number);
+
 // Initialize local storage here
-if (!localStorage.getItem("number")) {
+if (!localStorage.getItem("number") === null) {
   localStorage.setItem("number", 0);
+}
+if (localStorage.getItem("total_count") === null) {
+  localStorage.setItem("total_count", total_days);
+}
+if (!localStorage.getItem("message") === null) {
+  localStorage.setItem("message", "");
 }
 
 // full year in format
@@ -20,6 +35,7 @@ if (isNaN(count_day.innerHTML)) {
 var increaseButton = document.getElementById("increase-button");
 var decreaseButton = document.getElementById("decrease-button");
 var resetButton = document.getElementById("reset-button");
+var ignoreButton = document.getElementById("ignore-button");
 var dayValue = document.getElementById("day-value");
 var monthValue = document.getElementById("month-value");
 var yearValue = document.getElementById("year-value");
@@ -61,6 +77,12 @@ function updateButton() {
   } else {
     grammarCheck.innerHTML = "days";
   }
+  //check to see if you have checked-in
+  let current_count = parseInt(localStorage.getItem("total_count"));
+  if (current_count < total_days) {
+    reminderMessage = document.getElementById("reminder");
+    reminderMessage.style.display = "block";
+  }
 }
 setInterval(updateButton, 0);
 
@@ -69,6 +91,7 @@ increaseButton.addEventListener("click", function () {
   update = parseInt(count_day.innerHTML) + 1;
   localStorage.setItem("number", update);
   count_day.innerHTML = update;
+  localStorage.setItem("total_count", total_days);
 });
 
 //hold on left-click for speedy increament
@@ -79,7 +102,8 @@ increaseButton.addEventListener("mousedown", () => {
     update = parseInt(count_day.innerHTML) + 1;
     localStorage.setItem("number", update);
     count_day.innerHTML = update;
-  }, 100); // Increment the counter every 100 milliseconds
+    localStorage.setItem("total_count", total_days);
+  }, 100); // Increment the counter tops at every 100 milliseconds
   increaseButton.addEventListener("mouseup", () => {
     // Clear the interval when the button is released
     clearInterval(intervalId);
@@ -91,6 +115,7 @@ decreaseButton.addEventListener("click", function () {
   update = parseInt(count_day.innerHTML) - 1;
   localStorage.setItem("number", update);
   count_day.innerHTML = update;
+  localStorage.setItem("total_count", total_days);
 });
 
 //hold on left-click for speedy decrement
@@ -105,7 +130,8 @@ decreaseButton.addEventListener("mousedown", () => {
     }
     localStorage.setItem("number", update);
     count_day.innerHTML = update;
-  }, 100); // Increment the counter every 100 milliseconds
+    localStorage.setItem("total_count", total_days);
+  }, 100); // Increment the counter tops at every 100 milliseconds
   decreaseButton.addEventListener("mouseup", () => {
     // Clear the interval when the button is released
     clearInterval(intervalId);
@@ -119,6 +145,7 @@ resetButton.addEventListener("click", function () {
   dayValue.innerHTML = 0;
   monthValue.innerHTML = 0;
   yearValue.innerHTML = 0;
+  localStorage.setItem("total_count", total_days);
 });
 
 //hide edit-form
@@ -193,6 +220,14 @@ dateForm.addEventListener("submit", function (event) {
 
   event.preventDefault();
 });
+
+//removing reminder message
+var reminderMessage = document.getElementById("reminder");
+ignoreButton.addEventListener("click", function () {
+  reminderMessage.style.display = "none";
+  localStorage.setItem("total_count", total_days);
+});
+
 // //send mission
 // function sendMission() {
 //   var editForm = document.getElementById("edit-goal").value;
