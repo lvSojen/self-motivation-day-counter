@@ -3,9 +3,9 @@ var full_year = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 
 //to get total number of days in the year
 function getDayOfYear(date) {
-  var start = new Date(date.getFullYear(), 0, 0);
-  var diff = date - start;
-  var oneDay = 1000 * 60 * 60 * 24;
+  let start = new Date(date.getFullYear(), 0, 0);
+  let diff = date - start;
+  let oneDay = 1000 * 60 * 60 * 24;
   return Math.floor(diff / oneDay);
 }
 
@@ -162,9 +162,9 @@ resetButton.addEventListener("click", function () {
 //hide edit-form
 function showEditForm() {
   // Get the element to hide
-  var dateForm = document.getElementById("date-form");
-  var editForm = document.getElementById("edit-form");
-  var textArea = document.getElementById("edit-goal");
+  let dateForm = document.getElementById("date-form");
+  let editForm = document.getElementById("edit-form");
+  let textArea = document.getElementById("edit-goal");
 
   // Toggle the element's visibility
   if (editForm.style.display === "block") {
@@ -180,8 +180,8 @@ function showEditForm() {
 var taskForm = document.getElementById("edit-form");
 
 taskForm.addEventListener("submit", function (event) {
-  var editForm = document.getElementById("edit-goal");
-  var currentGoal = document.getElementById("current-goal");
+  let editForm = document.getElementById("edit-goal");
+  let currentGoal = document.getElementById("current-goal");
   if (!editForm.value.trim()) {
     alert("Please enter some text in the textarea");
   } else {
@@ -198,9 +198,9 @@ taskForm.addEventListener("submit", function (event) {
 function showDateForm() {
   // Get the element to hide
   // var editForm = document.getElementById("edit-form");
-  var dateForm = document.getElementById("date-form");
-  var editForm = document.getElementById("edit-form");
-  var textArea = document.getElementById("edit-number");
+  let dateForm = document.getElementById("date-form");
+  let editForm = document.getElementById("edit-form");
+  let textArea = document.getElementById("edit-number");
 
   // Toggle the element's visibility
   if (dateForm.style.display === "block") {
@@ -215,8 +215,8 @@ function showDateForm() {
 //update new Goal when submit using edit date form
 var dateForm = document.getElementById("date-form");
 dateForm.addEventListener("submit", function (event) {
-  var editForm = document.getElementById("edit-number");
-  var currentNumber = document.getElementById("count-day");
+  let editForm = document.getElementById("edit-number");
+  let currentNumber = document.getElementById("count-day");
   trimNumber = parseInt(editForm.value.trim());
   if (!editForm.value || editForm.value.trim() === "") {
     alert("Please enter some text in the textarea");
