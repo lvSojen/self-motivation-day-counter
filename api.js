@@ -18,7 +18,7 @@ request.onload = function () {
   var products = document.getElementById("quotes");
   // products.innerHTML = `${quotes}\n
   // ${name}`;
-  products.innerText = `${quotes}\n- ${name}`;
+  products.innerText = `${quotes}\n- ${name === null ? 'Anonymous': name}`;
   // products.append("\n-----" + name);
   // adding <li>{name}</li> to the body of HTML
   document.body.appendChild(products);
