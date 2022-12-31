@@ -19,6 +19,6 @@ Tips:
 
 1. zoom in for a better visual experience
 <br />
-Whoever enjoyed this, thank you!
+Whoever enjoyed this, you're welcome!
 <img width="673" alt="image" src="https://user-images.githubusercontent.com/97422448/210122977-7486f554-fe1a-4d52-8e4c-9b34597ea5f8.png">
 
