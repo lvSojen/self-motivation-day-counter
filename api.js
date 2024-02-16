@@ -1,20 +1,22 @@
 var request = new XMLHttpRequest();
 
-request.open("GET", "https://type.fit/api/quotes");
+// request.open("GET", "https://type.fit/api/quotes");
+request.open("GET", "https://raw.githubusercontent.com/bmumz/inspirational-quotes-api/main/db.json");
 
 request.onload = function () {
   var response = request.response;
-  var parsedData = JSON.parse(response);
-  // console.log(parsedData);
+  // console.log(response);
+  var parsedData = JSON.parse(response).quotes;
+  console.log(parsedData);
   // console.log(parsedData.length);
 
   // getting random a quote on load
   const min = 0;
   const max = parsedData.length;
   const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-
-  var quotes = parsedData[randomNumber].text;
-  var name = parsedData[randomNumber].author;
+  console.log(randomNumber);
+  var quotes = parsedData[randomNumber].quote;
+  var name = parsedData[randomNumber].source;
   var products = document.getElementById("quotes");
   // products.innerHTML = `${quotes}\n
   // ${name}`;
